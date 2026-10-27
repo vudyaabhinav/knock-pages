@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "xyz.abv.knock",
-      "sha256_cert_fingerprints": ["DEBUG_OR_RELEASE_CERT_SHA256_PLACEHOLDER"]
+      "sha256_cert_fingerprints": ["5A:4D:AE:3A:7F:53:AB:01:EB:A7:74:F6:E6:BC:B4:65:68:86:1D:94:87:F0:32:3E:7A:ED:05:92:AF:3B:4B:08"]
     }
   }
 ]
