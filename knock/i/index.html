@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Knock invite</title>
+<style>
+  :root { color-scheme: dark; --bg:#0d0d0f; --fg:#f2f2f2; --muted:#9a9aa3; --card:#17171b; --accent:#7aa2ff; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:420px; margin:0 auto; padding:48px 20px; }
+  h1 { font-size:22px; font-weight:600; margin:0 0 8px; }
+  p { color:var(--muted); margin:0 0 24px; }
+  .btn { display:block; text-align:center; padding:14px 16px; border-radius:14px; background:var(--card); color:var(--fg);
+         text-decoration:none; font-weight:500; margin:10px 0; border:1px solid #26262c; }
+  .btn.primary { background:var(--accent); color:#0d0d0f; border-color:transparent; }
+  .hide { display:none; }
+  code { color:var(--muted); font-size:13px; word-break:break-all; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Someone invited you to Knock</h1>
+  <p id="lead">A private messenger for a few friends. No account, no phone number. Install the app, then open this link again.</p>
+
+  <a id="android" class="btn primary hide" href="#">Get Knock on Google Play</a>
+  <a id="ios" class="btn primary hide" href="#">Get Knock on the App Store</a>
+  <button id="copy" class="btn hide">Copy the invite for Knock</button>
+  <p id="copied" class="hide">Copied. Open Knock and it will offer to paste the invite.</p>
+
+  <p id="noinvite" class="hide">This page needs an invite link — the part after <code>#</code> is missing. Ask your friend for a fresh one; invites expire.</p>
+  <p id="desktop" class="hide">Open this link on your phone.</p>
+</main>
+<script>
+(function () {
+  // The invite payload lives in the fragment: browsers never send it to the server, so this page
+  // (and GitHub Pages) learns nothing. With Knock installed the OS opens the app before this page
+  // is seen (App Links / Universal Links claim /knock/*).
+  var payload = location.hash.slice(1);
+  var ua = navigator.userAgent;
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var show = function (id) { document.getElementById(id).classList.remove('hide'); };
+  if (!payload) { show('noinvite'); return; }
+  if (isAndroid) {
+    // Play passes `referrer` to the app on first launch (Install Referrer API): the join happens
+    // without pasting anything. PLAY_ID is the applicationId.
+    var play = 'https://play.google.com/store/apps/details?id=xyz.abv.knock&referrer=' + encodeURIComponent('invite=' + payload);
+    var a = document.getElementById('android'); a.href = play; show('android');
+  } else if (isIOS) {
+    // No install referrer on iOS: copy the invite; Knock's first launch offers to paste it.
+    var ios = document.getElementById('ios'); ios.href = 'https://apps.apple.com/app/idAPPSTORE_ID'; show('ios');
+    var c = document.getElementById('copy'); show('copy');
+    c.onclick = function () {
+      navigator.clipboard.writeText(location.href).then(function () { show('copied'); c.classList.add('hide'); });
+    };
+  } else {
+    show('desktop');
+  }
+})();
+</script>
+</body>
+</html>
