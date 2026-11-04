@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["TEAMID.xyz.abv.knock"],
+        "appIDs": ["NNZZUL2D37.xyz.abv.knock"],
         "components": [
           { "/": "/knock/i", "comment": "Knock invite links; the payload is in the fragment" },
           { "/": "/knock/i/*" }
