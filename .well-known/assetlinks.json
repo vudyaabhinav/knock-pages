@@ -1,10 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "xyz.abv.knock",
-      "sha256_cert_fingerprints": ["5A:4D:AE:3A:7F:53:AB:01:EB:A7:74:F6:E6:BC:B4:65:68:86:1D:94:87:F0:32:3E:7A:ED:05:92:AF:3B:4B:08"]
+      "sha256_cert_fingerprints": [
+        "5A:4D:AE:3A:7F:53:AB:01:EB:A7:74:F6:E6:BC:B4:65:68:86:1D:94:87:F0:32:3E:7A:ED:05:92:AF:3B:4B:08",
+        "1D:5F:D2:AE:D5:21:9A:B9:9D:1C:E5:23:6C:BF:91:83:5A:64:EA:97:E5:18:88:65:E0:04:43:68:F0:96:7A:55"
+      ]
     }
   }
 ]
